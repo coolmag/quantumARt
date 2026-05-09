@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификат Подлинности - Аврора</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #f4f1ea;
+            --container-bg: #ffffff;
+            --text-primary: #3d3d3d;
+            --text-secondary: #6c757d;
+            --gold-color: #c09f58;
+            --border-color: #e0d9cb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .certificate-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            background-image:
+                linear-gradient(var(--border-color) 2px, transparent 2px),
+                linear-gradient(90deg, var(--border-color) 2px, transparent 2px);
+            background-size: 50px 50px;
+            background-position: -2px -2px;
+        }
+        .certificate-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--gold-color);
+            pointer-events: none;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--gold-color);
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .header p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .content .image-wrapper {
+            flex-shrink: 0;
+            border: 10px solid var(--container-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .content img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+        .content .details {
+            text-align: left;
+        }
+        .details h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .details p {
+            margin: 15px 0;
+            line-height: 1.7;
+            font-size: 1.1em;
+        }
+        .details strong {
+            color: #000;
+        }
+        .details code {
+            background-color: #e9eaf2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            word-wrap: break-word;
+            border: 1px solid var(--border-color);
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            position: relative;
+        }
+        .seal {
+            position: absolute;
+            bottom: -30px;
+            right: -10px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate-border"></div>
+        <div class="header">
+            <h1>Сертификат Подлинности</h1>
+            <p>Квантово-Нейросетевой Генератор "Аврора"</p>
+        </div>
+        <div class="content">
+            <div class="image-wrapper">
+                <img src="{{ url_for('static', filename=image_filename) }}" alt="Сгенерированное искусство">
+            </div>
+            <div class="details">
+                <h2>Данные Артефакта</h2>
+                <p><strong>Уникальный ID:</strong> <code>{{ unique_id }}</code></p>
+                <p><strong>Дата создания:</strong> {{ timestamp }}</p>
+                <p><strong>Квантовый промпт:</strong> "{{ prompt }}"</p>
+                <p><strong>Квантовый хэш (ДНК):</strong> <code>{{ seed }}</code></p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Этот сертификат подтверждает, что данное произведение было создано с использованием уникальной последовательности, полученной в результате измерения квантовой схемы, и визуализировано нейросетевой моделью GigaChat.</p>
+        </div>
+        <svg class="seal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <defs>
+                <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" style="stop-color:rgb(212,175,55);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(192,159,88);stop-opacity:1" />
+                </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="45" fill="url(#grad1)" />
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#b08d44" stroke-width="2"/>
+            <text x="50" y="55" font-family="Orbitron, sans-serif" font-size="14" fill="#6a5524" text-anchor="middle">AURORA</text>
+            <text x="50" y="70" font-family="Orbitron, sans-serif" font-size="10" fill="#6a5524" text-anchor="middle">QUANTUM</text>
+        </svg>
+    </div>
+</body>
+</html>
